@@ -5,6 +5,7 @@ target
 src/temp*
 *.class
 *.iml
+src/main/java/test*
 ### Eclipse ###
 .apt_generated
 .classpath
