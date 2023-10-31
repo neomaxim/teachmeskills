@@ -2,7 +2,6 @@
 out/
 .idea
 target
-src/temp*
 *.class
 *.iml
 src/main/java/test*
