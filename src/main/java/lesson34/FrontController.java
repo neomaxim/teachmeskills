@@ -3,25 +3,25 @@ package lesson34;
 public class FrontController {
     private Dispatcher dispatcher;
 
-    public FrontController(){
+    public FrontController() {
         dispatcher = new Dispatcher();
     }
 
-    private boolean isAuthenticUser(){
+    private boolean isAuthenticUser() {
         System.out.println("User is authenticated successfully.");
         return true;
     }
 
-    private void trackRequest(String request){
+    private void trackRequest(String request) {
         System.out.println("Page requested: " + request);
     }
 
-    public void dispatchRequest(String request,Integer password){
+    public void dispatchRequest(String request, Integer password) {
         //log each request
         trackRequest(request);
 
         //authenticate the user
-        if(isAuthenticUser()){
+        if (isAuthenticUser()) {
             dispatcher.dispatch(request);
         }
     }
