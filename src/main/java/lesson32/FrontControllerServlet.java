@@ -10,30 +10,16 @@ import java.io.IOException;
 
 @WebServlet("/frontController")
 public class FrontControllerServlet extends HttpServlet {
+    private final Dispatcher dispatcher = new Dispatcher();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        response.setContentType("text/html;charset=UTF-8");
-
-        String username=request.getParameter("username");
-        String password=request.getParameter("pwd2");
-
-       if (password.equals("aA12345678")&& username.equals("Maxim")) {
-
-
-            RequestDispatcher rd=request.getRequestDispatcher("WEB-INF/success.jsp");
-            rd.forward(request, response);
-        } else {
-
-            RequestDispatcher rd=request.getRequestDispatcher("WEB-INF/errorLoginAndPasword.jsp");
-            rd.forward(request, response);
-        }
-
+        dispatcher.dispatch(request, response);
     }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        req.getRequestDispatcher("WEB-INF/loginAndPasword.jsp").forward(req, resp);
+        dispatcher.dispatch(req, resp);
+
     }
 
 }
