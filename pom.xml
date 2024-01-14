@@ -7,47 +7,19 @@
   <groupId>java</groupId>
   <artifactId>teach</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <packaging>pom</packaging>
 
-  <properties>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  <modules>
+    <module>lesson</module>
+    <module>spring</module>
+    <module>project</module>
+    <module>spring-mvc</module>
+    <module>spring_mvc_lesson39</module>
+    <module>spring-boot</module>
+    <module>spring-boot_test</module>
+    <module>spring-boot_lesson41</module>
+    <module>spring-boot_test41</module>
+  </modules>
 
-    <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
-    <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
-   <lombok.version>1.18.28</lombok.version>
-
-    <jquery.version>3.3.1</jquery.version>
-  </properties>
-
-  <dependencies>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>${javax.servlet-api.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>jquery</artifactId>
-      <version>${jquery.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>${lombok.version}</version>
-    </dependency>
-  </dependencies>
-
-  <build>
-    <finalName>teach</finalName>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>${maven-war-plugin.version}</version>
-      </plugin>
-    </plugins>
-  </build>
 
 </project>

@@ -34,8 +34,9 @@ public class AutoServiceImpl implements AutoService {
 
     @Override
     public void edit(Auto auto) {
-
+log.info(autoDAO.getById(auto.getId()));
         autoDAO.edit(auto);
+
     }
 
     @Override

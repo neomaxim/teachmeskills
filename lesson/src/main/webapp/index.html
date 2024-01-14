@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>MAX</title>
+    <script src="webjars/jquery/3.3.1/jquery.min.js"></script>
+   <!-- <script type="text/javascript">
+        $(function (){
+            console.log("ready!!!")
+            alert('READY')
+        })
+    </script>-->
+<script src="js/script.js"></script>
+
+    <link rel="stylesheet" href="css/style.css"/>
+   <!-- <link href="css/style.css" rel="stylesheet" type="text/css" /> -->
+
+
+    <style>
+        #textBlock{
+            color: red;
+        }
+        .green{color: green}
+        .bold{font-weight: bold}
+
+        li{
+            font-style: initial;
+            font-size: small;
+        }
+
+    </style>
+</head>
+<body>
+<p style="color: red;background-color: green">hello Word123</p>
+<span id="textBlock"> new</span>
+<br>
+<span class="green"> здесь могла быть ваша реклама</span>
+<br>
+<span class="green bold"> А это моя реклама</span>
+
+<h1 class="green">Header1</h1>
+<h2>Header2</h2>
+
+<ul>
+    <li>Элемент списка1</li>
+    <li>Элемент списка2</li>
+    <li>Элемент списка3</li>
+    <li>Элемент списка4</li>
+</ul>
+
+<ol>
+    <li>Нумерованный Элемент списка1</li>
+    <li>Нумерованный Элемент списка2</li>
+    <li>Нумерованный Элемент списка3</li>
+    <li>Нумерованный Элемент списка4</li>
+</ol>
+
+<a href="https://google.com">Поисковик</a>
+
+<img height="100" width="100" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJMAmQMBEQACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABAUBAgYDB//EADoQAAEDAgQDBQUHAwUBAAAAAAEAAgMEEQUSITEGE0FRYXGBkQcUIjKhFSNCUrHB0UOi8DNTYnKSFv/EABsBAQACAwEBAAAAAAAAAAAAAAAFBgEDBAIH/8QANxEAAQMCAwUGBgICAQUAAAAAAQACAwQRBSExBhJBUXETImGBkaEUscHR4fAyQiNS8RUzU4KS/9oADAMBAAIRAxEAPwDml9JVeREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREWCQES40S/avDXtcbAj1Xt0b2C7mkDosr2vCIiIiIiIiIiIiIiIiLCIsoiIiIiIiIiLKwUWF6MiJ+bQdiq2JbRNiJjpczz4enH91VzwnZN8wEtZ3W/68T1PD59F7NaG6AKo1FXUVJvK8n5eivNLQU1I3dgYG/P11WbBcwFl2a5FdDg/BFZi1I2rfUso43i8eaMvc4dtriw87rrh2wlw9xicO0HidOhzXz/AB6koZpCIW7rxqRp0t9cvNc3T0c9VWGko4zUTZi1rYh81juO5fR5K+CCmFTO7caQDn4jTxPRUzsnl5Y0XKtq3hDG6GgfW1NPGIo25nhsoLmgbns07ioal2uwqqqG08bjdxsCQQCeq3voZmNLjawVCrMuNFlERFlERERERYRFlEREREAubAXK56mqhpmb8zrBdVJR1FZJ2cDd4/uvJeghJ3d6Kt1G1LBlBHfxJt7K20uxkjheolt4NF/c/ZbclveVHHaet4Nb6flSrdjsPA7znHzH2WRE0G+601O0FVUQmJwAvyy+q6KPZeipKgTtJJGgOY66LdQasaIsoiL6bw1S1uI8NQR1tcRB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mBrMjGgWAFgAFHOL3kl2ZK8d8rQBznl7J7i+gABHms3AFrLJsBYhbNjkbbNMXEC3yhY3hyWC5vJbZXBps7M7pcAW9FgkEjJYuCVDxFtc+jlbTZGylvw5Tr9VuhMQkBfopHDHUbKtjqoEsvmo2DwV1O2X3rmPzZQ1kkodpYXsbeOi2TujcRuZdApHHanD6h7Pg2ga3Ibu/wBjw9wb5DKymS07Jz99RxuvoTcE6bfrovMVRLD/ANqQi3K4UE15bo5Qqzh+CVt6d7onWAsTdveT1v5qeodq62B47Y77fQ+R0HotjKoj+QuqetwWrpSSxpnYADmY3qTta91a8P2so6nKb/Gb8Tl1JsAF0snY/wAFD91n/wBiT/wVMf8AV8P/APOz/wC2/dbN4cwvAMUg+VrG7zjYeK9XW8bDIbRtLzYn4RfQbla5qiKAXlcALgZ8zovJ8VZ0uBVc4jLw2Jj2k3Opb2XHfdVet2upId5sQ3yCB4HmQfD3PhmtLp42q1p+HaZmR0znyObfML2aVWana6vlLhHZrTpYZjz5np0sud1W46BWEGH0sDCyOBli7NqL63uPTooOfEauodvSSEkC2p0/PHmtTpnuNyVJaABYAAdy4jmtRN1lYRERERERactn5G+gXreKzvFGRMY4uYxrSdyBuhcTqVkuJ1W68ryiIiIiIiIiIiIiIokGG0dPMZYYGsfYi46Ai37LunxKrnjEcshcBzPiT9f2wW1073CxK9Y6WnjkdJHCxr3buA16fwFzvqJpGhj3Egcz1+59V5MjiLEr1stV14WVhERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERF//2Q==">
+
+     <div>
+         <div>
+             <div>Индефикатор</div>
+             <div>ФИО</div>
+         </div>
+         <div>
+             <div>1</div>
+             <div>Шпаковский Максим</div>
+         </div>
+     </div>
+<form action="http://localhost:8080/teach_war_exploded/age" method="post"/>
+<label for="name">Укажите ФИО: <input id="name" type="text" name="name"value="user"placeholder="Name"/></label>
+<label for="age">Укажите возраст: <input id="age" type="number" name="age" value="18" placeholder="Age"/></label>
+<label for="birthey">Укажите дату рождения: <input id="birthey" type="date" name="birthey"  placeholder="birthey"/></label>
+<label for="sex">мужской пол: <input id="sex" type="checkbox" name="sex"  placeholder="sex"/></label>
+<label for="heater">Ваш рост: <select id="heater" name="heater">
+    <option value="no"></option>
+<option value="small">150</option>
+    <option value="small">160</option>
+    <option value="norm">170</option>
+    <option value="big">180</option>
+    <option value="superBig">190</option>
+</select>
+</label>
+<!--<input type="submit">-->
+<button onclick="push()">Нажми</button>
+</form>
+
+<script type="text/javascript">
+function push(){
+    alert('hello MAX')
+}
+
+document.getElementById('sex').addEventListener("click", function (){
+    alert('yes !!!!!')
+})
+</script>
+
+
+</body>
+</html>
