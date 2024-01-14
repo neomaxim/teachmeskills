@@ -1,0 +1,17 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration</title>
+</head>
+<body>
+<form method="post" th:action="@{/add}" th:object="${auto}">
+  <!--        <input name="name" th:value="${user.name}" placeholder="Name">-->
+  <input name="vin" th:value="${auto}" type="text" placeholder="vin"required/> <label>${vinErrorLabel}</label>
+ <input name="brand" th:value="${brand}" placeholder="brand"required><label>${brandErrorLabel}</label>
+  <input name="year" th:value="${year}" type="number" placeholder="year">
+  <button>Register</button>
+</form>
+</body>
+</html>

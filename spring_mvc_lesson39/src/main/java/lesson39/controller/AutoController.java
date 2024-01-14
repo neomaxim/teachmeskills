@@ -5,6 +5,7 @@ import lesson39.service.AutoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -74,10 +75,14 @@ public class AutoController {
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public ModelAndView editAuto(@PathVariable("id") int id) {
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("registration");
         Auto auto = autoService.getById(id);
         autoService.edit(auto);
+        log.info(autoService.getById(id));
+
         return modelAndView;
     }
+
 }
