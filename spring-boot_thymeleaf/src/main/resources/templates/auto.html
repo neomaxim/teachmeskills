@@ -1,0 +1,33 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Auto</title>
+</head>
+<body>
+
+
+<a href="/add" th:href="@{/add}">Add_Auto</a>
+
+<table>
+    <tr>
+        <th>id</th>
+        <th>vin</th>
+        <th>year</th>
+        <th>brand</th>
+    </tr>
+</table>
+
+<tr th:each="prod : ${autoList}">
+    <td th:text="${prod.getId()}">Onions</td>
+    <td th:text="${prod.getYear()}">Onions</td>
+    <td th:text="${prod.getBrand()}"></td>
+    <td th:text="${prod.getVin()}"></td>
+    <td>
+        <a th:href="@{'/delete/'+ ${prod.id}}">delete</a>
+        <a th:href="@{'/edit/'+ ${prod.id}}">edit</a>
+    </td>
+    <br/>
+</tr>
+</body>
+</html>
