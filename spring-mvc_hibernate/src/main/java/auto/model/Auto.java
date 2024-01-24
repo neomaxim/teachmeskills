@@ -35,7 +35,7 @@ public class Auto {
         return vin;
     }
 
-    public void setVin(String brand) {
+    public void setVin(String vin) {
         this.vin = vin;
     }
 
@@ -51,7 +51,7 @@ public class Auto {
         return brand;
     }
 
-    public void setBrand(String genre) {
+    public void setBrand(String brand) {
         this.brand = brand;
     }
 
@@ -59,7 +59,7 @@ public class Auto {
         return status;
     }
 
-    public void setStatus(boolean watched) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
