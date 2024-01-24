@@ -22,12 +22,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/")
 public class AutoController {
-    private AutoService autoService;
+    private final AutoService autoService;
 
-    @Autowired
-    public void setAutoService(AutoService autoService) {
-        this.autoService = autoService;
-    }
+
 
     @GetMapping("/")
     public ModelAndView allAuto() {
@@ -79,7 +76,7 @@ public class AutoController {
         Auto auto = autoService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("registration");
-        modelAndView.addObject("registration", auto);
+        modelAndView.addObject("auto", auto);
         return modelAndView;
     }
 

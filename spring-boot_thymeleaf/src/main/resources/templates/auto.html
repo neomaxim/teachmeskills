@@ -19,10 +19,10 @@
 </table>
 
 <tr th:each="prod : ${autoList}">
-    <td th:text="${prod.getId()}">Onions</td>
-    <td th:text="${prod.getYear()}">Onions</td>
-    <td th:text="${prod.getBrand()}"></td>
-    <td th:text="${prod.getVin()}"></td>
+    <td th:text="${prod.id}">Onions</td>
+    <td th:text="${prod.year}">Onions</td>
+    <td th:text="${prod.brand}"></td>
+    <td th:text="${prod.vin}"></td>
     <td>
         <a th:href="@{'/delete/'+ ${prod.id}}">delete</a>
         <a th:href="@{'/edit/'+ ${prod.id}}">edit</a>
