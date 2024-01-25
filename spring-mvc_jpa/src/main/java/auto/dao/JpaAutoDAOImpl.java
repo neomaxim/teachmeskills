@@ -1,6 +1,8 @@
 package auto.dao;
 
 import auto.model.Auto;
+
+
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -10,6 +12,7 @@ import java.util.List;
 
 
 @Repository
+//@RequiredArgsConstructor
 public class JpaAutoDAOImpl implements AutoDAO {
     @PersistenceContext
     private EntityManager entityManager;
@@ -18,6 +21,7 @@ public class JpaAutoDAOImpl implements AutoDAO {
     public List<Auto> allAutos(int page) {
 
         return entityManager.createQuery("from Auto").setFirstResult(10 * (page - 1)).setMaxResults(10).getResultList();
+
     }
 
     @Override
@@ -58,5 +62,6 @@ public class JpaAutoDAOImpl implements AutoDAO {
         query = entityManager.createQuery("from Auto where vin = :vin");
         query.setParameter("vin", vin);
         return query.getResultList().isEmpty();
+
     }
 }

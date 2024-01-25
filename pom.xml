@@ -22,6 +22,8 @@
     <module>spring-mvc_test43</module>
     <module>spring-mvc_test44</module>
      <module>spring-mvc_hibernate</module>
+    <module>spring-mvc_test45</module>
+    <module>spring-mvc_jpa</module>
   </modules>
 
 
