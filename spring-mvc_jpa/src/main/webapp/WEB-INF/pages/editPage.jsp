@@ -36,7 +36,7 @@
             <c:if test="${auto.status == true}">
                 <input type="checkbox" name="status" id="status" value="${auto.status}" checked>
             </c:if>
-            <c:if test="${auto.status != true}">
+            <c:if test="${auto.status!= true}">
                 <input type="checkbox" name="status" id="status">
             </c:if>
             <span class="checkbox-common checkbox-no">no</span>
