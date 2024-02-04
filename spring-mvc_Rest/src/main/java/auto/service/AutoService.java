@@ -1,17 +1,19 @@
 package auto.service;
 
 
+
 import auto.dto.AutoDto;
 import auto.model.Auto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AutoService {
-    List<Auto> allAutos(int page);
+    List<Auto>  allCars();
 
-    AutoDto create(AutoDto userDto);
+ void add(Auto auto);
+  //AutoDto add(AutoDto autoDto);
 
-    void add(Auto auto);
 
     void delete(Auto auto);
 
@@ -19,7 +21,4 @@ public interface AutoService {
 
     Auto getById(int id);
 
-    int autosCount();
-
-    boolean checkVin(String vin);
 }

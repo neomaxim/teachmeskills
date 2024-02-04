@@ -24,6 +24,10 @@
      <module>spring-mvc_hibernate</module>
     <module>spring-mvc_test45</module>
     <module>spring-mvc_jpa</module>
+    <module>spring-mvc_test_rest</module>
+    <module>spring-mvc_Rest</module>
+    <module>spring_rest_hw45</module>
+
   </modules>
 
 
