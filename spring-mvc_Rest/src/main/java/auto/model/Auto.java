@@ -1,9 +1,10 @@
 package auto.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
 import javax.persistence.*;
-
+@Data
 @Entity
 @Table(name = "autos")
 public class Auto {
@@ -23,6 +24,10 @@ public class Auto {
 
     @Column(name = "status")
     private boolean status;
+
+    //@JsonIgnore
+
+   // private byte[] avatar;
 
 
     public int getId() {

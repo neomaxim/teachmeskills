@@ -1,54 +1,52 @@
 package auto.service;
 
 
+
+
+
 import auto.dao.AutoDAO;
 import auto.dto.AutoDto;
+import auto.mapper.AutoMapper;
 import auto.model.Auto;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-
+@Component
 @Service
+@RequiredArgsConstructor
 public class AutoServiceImpl implements AutoService {
+    private final AutoMapper autoMapper;
 
-
-    @Override
-    public AutoDto create(AutoDto userDto) {
-        return new AutoDto();
-    }
-
-    private AutoDAO autoDAO;
-
-    @Autowired
-    public void setAutoDAO(AutoDAO autoDAO) {
-        this.autoDAO = autoDAO;
-    }
+private  final AutoDAO autoDAO;
 
     @Override
-    @Transactional
-    public List<Auto> allAutos(int page) {
-        return autoDAO.allAutos(page);
+    public List<Auto> allCars() {
+       return autoDAO.getAllAuto();
     }
 
-    @Override
+
+
+  /*  public AutoDto add(AutoDto autoDto) {
+        return autoMapper.toDTO(autoDAO.saveAuto(autoMapper.toModel(autoDto)));
+    }*/
+
+     @Override
     @Transactional
     public void add(Auto auto) {
         autoDAO.add(auto);
     }
 
+
+
     @Override
     @Transactional
     public void delete(Auto auto) {
         autoDAO.delete(auto);
-    }
-
-    @Override
-    @Transactional
-    public void edit(Auto auto) {
-        autoDAO.edit(auto);
     }
 
     @Override
@@ -59,13 +57,7 @@ public class AutoServiceImpl implements AutoService {
 
     @Override
     @Transactional
-    public int autosCount() {
-        return autoDAO.autosCount();
-    }
-
-    @Override
-    @Transactional
-    public boolean checkVin(String vin) {
-        return autoDAO.checkVin(vin);
+    public void edit(Auto auto) {
+        autoDAO.edit(auto);
     }
 }

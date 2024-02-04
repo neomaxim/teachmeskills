@@ -2,67 +2,59 @@ package auto.dao;
 
 
 import auto.model.Auto;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 
 
+
+@RequiredArgsConstructor
 @Repository
 public class AutoDAOImpl implements AutoDAO {
-    private SessionFactory sessionFactory;
 
-    @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+    @PersistenceContext
+    private EntityManager entityManager;
+
+  /* @Override
+    public Auto saveAuto(Auto auto) {
+        entityManager.persist(auto);
+        return auto;
+    }*/
 
     @Override
-    @SuppressWarnings("unchecked")
-    public List<Auto> allAutos(int page) {
-        Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("from Auto").setFirstResult(10 * (page - 1)).setMaxResults(10).list();
+    public List<Auto> getAllAuto() {
+        return entityManager.createQuery("from Auto",Auto.class).getResultList();
     }
+
+
 
     @Override
     public void add(Auto auto) {
-        Session session = sessionFactory.getCurrentSession();
-        session.persist(auto);
+
+        entityManager.persist(auto);
     }
 
     @Override
     public void delete(Auto auto) {
-        Session session = sessionFactory.getCurrentSession();
-        session.delete(auto);
-    }
 
-    @Override
-    public void edit(Auto auto) {
-        Session session = sessionFactory.getCurrentSession();
-        session.update(auto);
+        entityManager.remove(auto);
     }
 
     @Override
     public Auto getById(int id) {
-        Session session = sessionFactory.getCurrentSession();
-        return session.get(Auto.class, id);
+
+        return entityManager.getReference(Auto.class, id);
     }
 
     @Override
-    public int autosCount() {
-        Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("select count(*) from Auto", Number.class).getSingleResult().intValue();
-    }
 
-    @Override
-    public boolean checkVin(String vin) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query;
-        query = session.createQuery("from Auto where vin = :vin");
-        query.setParameter("vin", vin);
-        return query.list().isEmpty();
+    public void edit(Auto auto) {
+
+        entityManager.merge(auto);
     }
 }

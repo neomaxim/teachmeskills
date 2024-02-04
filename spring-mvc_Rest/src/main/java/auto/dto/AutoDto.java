@@ -6,7 +6,8 @@ import lombok.Data;
 
 @Data
 public class AutoDto {
-    private Long id;
+
+   private Integer id;
 
     @JsonIgnore
     private byte[] avatar;
