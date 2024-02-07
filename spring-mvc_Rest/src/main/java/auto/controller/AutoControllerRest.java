@@ -16,6 +16,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 
+import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -52,13 +54,26 @@ public class AutoControllerRest {
 
    // @SneakyThrows
    @PostMapping
-    public ResponseEntity<Auto> create(@RequestPart("autos") @Valid Auto auto) {
-        autoService.add(auto);
-        return new ResponseEntity<>(auto, HttpStatus.CREATED);
-    }
+
+   public ResponseEntity<Auto> create(@RequestPart("autos") @Valid Auto auto) {
+
+           autoService.add(auto);
+           return new ResponseEntity<>(auto, HttpStatus.CREATED);
 
 
-   /* @SneakyThrows
+   }
+
+ /*   @SneakyThrows
+    @PostMapping
+    public ResponseEntity<CarDto> create(@RequestPart("carFile") MultipartFile carFile,
+                                         @RequestPart("car") CarDto carDto) {
+        carDto.setFile(carFile.getBytes());
+        log.info("file name {} {}", carFile.getName(), carFile.getBytes().length);
+        CarDto car = carService.save(carDto);
+        return new ResponseEntity<>(car, HttpStatus.CREATED);
+    }*/
+
+/*    @SneakyThrows
     @PostMapping
     public ResponseEntity<AutoDto> create(@RequestPart("avatar") MultipartFile carFile,
                                          @RequestPart("autos") AutoDto autoDto) {

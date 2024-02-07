@@ -2,8 +2,10 @@ package auto.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
 @Data
 @Entity
 @Table(name = "autos")

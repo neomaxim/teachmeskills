@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
 
 
 @RequiredArgsConstructor
@@ -20,11 +20,30 @@ public class AutoDAOImpl implements AutoDAO {
     @PersistenceContext
     private EntityManager entityManager;
 
-  /* @Override
+ /*   @Override
+    public Optional<Auto> getCarById(Long id) {
+        return Optional.ofNullable(entityManager.find(Auto.class, id));
+    }
+*/
+  @Override
     public Auto saveAuto(Auto auto) {
         entityManager.persist(auto);
         return auto;
-    }*/
+    }
+
+    @Override
+    public void add(Auto auto) {
+
+        entityManager.persist(auto);
+    }
+    @Override
+    public Auto getById(int id) {
+
+        return entityManager.getReference(Auto.class, id);
+    }
+
+
+
 
     @Override
     public List<Auto> getAllAuto() {
@@ -33,11 +52,7 @@ public class AutoDAOImpl implements AutoDAO {
 
 
 
-    @Override
-    public void add(Auto auto) {
 
-        entityManager.persist(auto);
-    }
 
     @Override
     public void delete(Auto auto) {
@@ -45,11 +60,7 @@ public class AutoDAOImpl implements AutoDAO {
         entityManager.remove(auto);
     }
 
-    @Override
-    public Auto getById(int id) {
 
-        return entityManager.getReference(Auto.class, id);
-    }
 
     @Override
 

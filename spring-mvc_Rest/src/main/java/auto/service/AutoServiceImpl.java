@@ -16,43 +16,41 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Component
+
 @Service
 @RequiredArgsConstructor
 public class AutoServiceImpl implements AutoService {
-    private final AutoMapper autoMapper;
-
-private  final AutoDAO autoDAO;
-
-    @Override
-    public List<Auto> allCars() {
-       return autoDAO.getAllAuto();
-    }
+   // private final AutoMapper autoMapper;
+    private  final AutoDAO autoDAO;
 
 
 
-  /*  public AutoDto add(AutoDto autoDto) {
-        return autoMapper.toDTO(autoDAO.saveAuto(autoMapper.toModel(autoDto)));
+    /*public CarDto save(CarDto carDto) {
+        return carMapper.toDTO(carDao.saveCar(carMapper.toModel(carDto)));
     }*/
 
+
+
+    @Override
+    @Transactional
+    public Auto getById(int id) {
+        return autoDAO.getById(id);
+    }
      @Override
     @Transactional
     public void add(Auto auto) {
         autoDAO.add(auto);
     }
 
-
+    @Override
+    public List<Auto> allCars() {
+        return autoDAO.getAllAuto();
+    }
 
     @Override
     @Transactional
     public void delete(Auto auto) {
         autoDAO.delete(auto);
-    }
-
-    @Override
-    @Transactional
-    public Auto getById(int id) {
-        return autoDAO.getById(id);
     }
 
     @Override
