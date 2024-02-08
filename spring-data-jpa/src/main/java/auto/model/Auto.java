@@ -1,14 +1,23 @@
 package auto.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+
 import javax.persistence.*;
 
 @Entity
+@Data
+@Accessors(chain = true)
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "autos")
 public class Auto {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "vin")
     private String vin;
@@ -23,11 +32,11 @@ public class Auto {
     private boolean status;
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
