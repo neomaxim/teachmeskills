@@ -1,11 +1,11 @@
 package auto.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -13,6 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "autos")
+@NamedEntityGraph(name="Auto.roles",attributeNodes = @NamedAttributeNode("roles"))
 public class Auto {
     @Id
     @Column(name = "id")
@@ -22,6 +23,7 @@ public class Auto {
     @Column(name = "vin")
     private String vin;
 
+
     @Column(name = "year")
     private int year;
 
@@ -30,7 +32,8 @@ public class Auto {
 
     @Column(name = "status")
     private boolean status;
-
+@OneToMany
+private List<Role> roles;
 
     public Long getId() {
         return id;
@@ -40,9 +43,7 @@ public class Auto {
         this.id = id;
     }
 
-    public String getVin() {
-        return vin;
-    }
+
 
     public void setVin(String vin) {
         this.vin = vin;
