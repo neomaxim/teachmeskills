@@ -24,8 +24,10 @@ public class AutoDto {
     private String brand;
  private boolean status;
 
+   private String user;
 
-    @JsonIgnore
+
+  //  @JsonIgnore
     private byte[] avatar;
 
 

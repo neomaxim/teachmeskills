@@ -32,10 +32,20 @@ public class Auto {
 
     @Column(name = "status")
     private boolean status;
+
+
+    @Column(name = "user")
+    private String user;
+@Column(name="avatar")
+    @JsonIgnore
+    private byte[] avatar;
+
+
+
 @OneToMany
 private List<Role> roles;
 
-    public Long getId() {
+ /*   public Long getId() {
         return id;
     }
 
@@ -73,8 +83,13 @@ private List<Role> roles;
         this.status = status;
     }
 
-    @Override
+   *//* @Override
     public String toString() {
         return id + " " + vin + " " + year + " " + brand + " " + status;
-    }
+    }*//*
+
+    @Override
+    public String toString() {
+        return id + " " + vin + " " + year + " " + brand + " " + status+" "+ avatar;
+    }*/
 }
