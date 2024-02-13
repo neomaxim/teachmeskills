@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -57,12 +58,25 @@ public class AutoControllerRest {
 
         return StringUtils.isEmpty(vin) ? autoService.allCars() : autoService.findByVin(vin); // производим поиск vin по базе
     }
-    @GetMapping(path = "/{id}/avatar", produces = MediaType.IMAGE_JPEG_VALUE)
-    public ResponseEntity<byte[]> getAvatarById(
-            @PathVariable @Parameter(description = "Auto id", required = true) Long id) {
-        return ResponseEntity.ok(autoService.getById(id).getAvatar());
-    }
+     @GetMapping(path = "/{id}/avatar", produces = MediaType.IMAGE_JPEG_VALUE)
+   public ResponseEntity<byte[]> getAvatarById(
+           @PathVariable ( "id") Long id) {
+       return ResponseEntity.ok(autoService.getById(id).getAvatar());
 
+   }
+/*   @GetMapping(path = "/{auto id}/avatar", produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<byte[]> getAvatarById(
+            @PathVariable @Parameter(description = "auto id", required = true) Long id) {
+        return ResponseEntity.ok(autoService.getById(id).getAvatar());
+    }*/
+/*@GetMapping(value = "/{autoId}/avatar", produces = MediaType.IMAGE_JPEG_VALUE)
+public ResponseEntity<byte[]> getAvatarById(@PathVariable("autoId") Long id) {
+    Optional<AutoDto> result = autoService.getById(id);
+    return result
+            .map(AutoDto::getAvatar)
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
+}*/
   /*  @PostMapping
     public ResponseEntity<AutoDto> save(
            // @RequestPart @Parameter(description = "avatar", required = true) MultipartFile avatar,

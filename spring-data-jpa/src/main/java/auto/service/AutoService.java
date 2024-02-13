@@ -6,6 +6,7 @@ import auto.dto.AutoDto;
 
 import org.springframework.data.domain.Pageable;
 import java.util.List;
+import java.util.Optional;
 
 public interface AutoService {
     List<AutoDto>  allCars();
@@ -18,4 +19,6 @@ public interface AutoService {
 
     AutoDto getById(Long id);
     void delete(Long id);
+
+
 }
