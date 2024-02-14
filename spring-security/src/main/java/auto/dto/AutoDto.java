@@ -15,19 +15,17 @@ import java.util.Arrays;
 @Data
 
 
-
 public class AutoDto {
 
-   private Long id;
+    private Long id;
     private String vin;
     private int year;
     private String brand;
- private boolean status;
+    private boolean status;
 
-   private String user;
+    private String user;
 
 
-  //  @JsonIgnore
     private byte[] avatar;
 
 

@@ -1,17 +1,10 @@
 package auto.config;
 
 
-
-
-import auto.model.RoleEnum;
 import auto.service.AuthenticationHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -19,20 +12,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.AnonymousAuthenticationFilter;
-import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
-import org.springframework.web.context.WebApplicationContext;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+import static auto.entity.RoleEnum.ADMIN;
+import static auto.service.Authorities.USER;
 
 
 @EnableWebSecurity
@@ -41,10 +26,9 @@ import java.util.stream.Collectors;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-  //  private final UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
-   private final AuthenticationHandler authenticationHandler;
-
+    private final AuthenticationHandler authenticationHandler;
 
 
     @Override
@@ -55,35 +39,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-               // .exceptionHandling().authenticationEntryPoint(new Http403ForbiddenEntryPoint())
-                //.and()
-                .authorizeRequests()
-                .antMatchers("/").permitAll()
+
+                .authorizeRequests().antMatchers("/").permitAll()
                 .and()
-                .authorizeRequests()
-                .antMatchers("/api/auto/*").hasAnyAuthority()
-//                .antMatchers("/api/users/*").hasAnyRole("ROLE_" + ADMIN)
-//                .antMatchers("/api/users/*").hasAnyRole("ROLE_" + ADMIN, "ROLE_" + USER)
-                .antMatchers("/api/**").authenticated()
+                .authorizeRequests().antMatchers("/api/**").authenticated()
+                .antMatchers("/api/auto/*").hasAnyRole("ROLE_" + ADMIN)
+                .antMatchers("/api/users/*").hasAnyRole("ROLE_" + ADMIN, "ROLE_" + USER)
                 .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .formLogin()
-//                    .loginPage("/users/login")
-//                .httpBasic()
+                .formLogin()
                 .and()
-              //  .addFilterAfter(jwtFilter, AnonymousAuthenticationFilter.class)
-//                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout()
-//                .logout(logout -> logout
-//                        .logoutUrl("/my/logout")
-//                        .logoutSuccessUrl("/my/index")
-////                        .logoutSuccessHandler(authenticationHandler)
-//                        .invalidateHttpSession(true)
-//                        .addLogoutHandler(authenticationHandler)
-//                        .deleteCookies("JSESSIONID")
-//                )
-//                .addLogoutHandler(authenticationHandler)
-        ;
+                .addLogoutHandler(authenticationHandler);
     }
 
     @Bean
@@ -91,7 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-   /* @Override
+    @Override
     protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(authenticationProvider());
     }
@@ -103,21 +69,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
-
-    @Bean
-    @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
-    public List<RoleEnum> userRights() {
-        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .map(RoleEnum::valueOf)
-                .collect(Collectors.toList());
-    }
-
-    @Bean
-    @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
-    public UsernamePasswordAuthenticationToken user() {
-        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return (UsernamePasswordAuthenticationToken) authentication;
-    }*/
 }
