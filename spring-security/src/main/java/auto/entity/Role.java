@@ -1,4 +1,4 @@
-package auto.model;
+package auto.entity;
 
 import lombok.Data;
 
