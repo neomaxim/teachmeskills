@@ -1,5 +1,6 @@
 package auto.exception;
 
+
 public class CustomException extends RuntimeException {
 
     public CustomException() {

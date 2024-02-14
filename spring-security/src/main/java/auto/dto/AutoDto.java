@@ -17,6 +17,7 @@ import java.util.Arrays;
 
 public class AutoDto {
 
+
     private Long id;
     private String vin;
     private int year;

@@ -1,5 +1,6 @@
 package auto.entity;
 
+
 import lombok.Data;
 
 import javax.persistence.*;

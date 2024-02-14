@@ -21,6 +21,7 @@ public class Auto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @Column(name = "vin")
     private String vin;
 

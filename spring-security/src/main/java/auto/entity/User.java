@@ -13,6 +13,7 @@ import javax.persistence.*;
 @NamedEntityGraph(name = "User.role", attributeNodes = @NamedAttributeNode("role"))
 public class User {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
