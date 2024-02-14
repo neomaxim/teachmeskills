@@ -40,6 +40,7 @@ public class AutoControllerRest {
 
     }
 
+
     @GetMapping(value = "/search", produces = "application/xml")
     @Operation(operationId = "all", description = "search autos")
     public List<AutoDto> getAll(

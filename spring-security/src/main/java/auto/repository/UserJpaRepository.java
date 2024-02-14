@@ -15,6 +15,7 @@ public interface UserJpaRepository extends JpaRepository<User, Long> {
     @Query("select user from User user")
     List<User> findContent(Pageable page);
 
+
     @Query(nativeQuery = true, value = "select * from users where user_name like :userName || '%'")
     List<User> findByName(@Param("userName") String name);
 

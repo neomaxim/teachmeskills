@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
+
 @Mapper
 public interface UserMapper {
 
@@ -27,6 +28,7 @@ public interface UserMapper {
         roleService.findByName(userDto.getRole()).ifPresent(user::setRole);
 
     }
+
 
     default List<UserDto> toDtos(List<User> users) {
         return users.stream().map(this::toDto).toList();

@@ -46,6 +46,7 @@ public class UserPrincipal implements UserDetails {
         return !Status.PASSWORD_EXPIRED.equals(user.getStatus());
     }
 
+
     @Override
     public boolean isEnabled() {
         return Status.OK.equals(user.getStatus());

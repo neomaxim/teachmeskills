@@ -13,4 +13,5 @@ public class Authorities {
         return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority).anyMatch(ADMIN::equals);
     }
+
 }

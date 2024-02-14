@@ -30,3 +30,4 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler, Auth
     public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
     }
 }
+
