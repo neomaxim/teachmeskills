@@ -30,7 +30,9 @@
     <module>spring-mvc_hw48</module>
     <module>spring-data-jpa</module>
     <module>spring-data-security</module>
-    <module>spring-security</module>
+    <module>security</module>
+    <module>securityAnd</module>
+
   </modules>
 
 

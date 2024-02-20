@@ -30,3 +30,7 @@ springdoc:
   api-docs:
     path: /api/docs.yaml
 #    enabled: false
+
+jwt:
+  secret: '\\_//\\_//\\_//P@s$w0rD2024\\_//\\_//\\_//'
+  expiration: '10m'
