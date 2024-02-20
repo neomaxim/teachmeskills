@@ -32,6 +32,7 @@
     <module>spring-data-security</module>
     <module>security</module>
     <module>securityAnd</module>
+    <module>securityfull</module>
 
   </modules>
 
