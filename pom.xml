@@ -31,6 +31,7 @@
     <module>spring-data-jpa</module>
     <module>spring-data-security</module>
     <module>security</module>
+    <module>securityAnd</module>
 
   </modules>
 
