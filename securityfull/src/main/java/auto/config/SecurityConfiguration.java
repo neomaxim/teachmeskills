@@ -1,7 +1,9 @@
 package auto.config;
 
 
+import auto.config.security.JwtFilter;
 import auto.service.AuthenticationHandler;
+import auto.service.Authorities;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,10 +14,15 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AnonymousAuthenticationFilter;
+import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static auto.controller.AuthController.AUTH_REQUEST_MAPPING;
 import static auto.entity.RoleEnum.ADMIN;
 import static auto.service.Authorities.USER;
 
@@ -30,6 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final AuthenticationHandler authenticationHandler;
 
+    private final JwtFilter jwtFilter;
 
     @Override
     public void configure(WebSecurity web) {
@@ -40,7 +48,40 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
 
-                .authorizeRequests().antMatchers("/").permitAll()
+              //  .exceptionHandling().authenticationEntryPoint(new Http403ForbiddenEntryPoint())
+              //  .and()
+                .authorizeRequests()
+                .antMatchers("/",AUTH_REQUEST_MAPPING).permitAll()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/api/**").authenticated()
+
+                .antMatchers("/user/**")
+                .hasAuthority(USER)
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+               // .formLogin()
+                  //  .loginPage("/users/login")
+              //  .httpBasic()
+                .and()
+                .addFilterAfter(jwtFilter, AnonymousAuthenticationFilter.class)
+      //          .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .logout()
+//                .logout(logout -> logout
+//                        .logoutUrl("/my/logout")
+//                        .logoutSuccessUrl("/my/index")
+////                        .logoutSuccessHandler(authenticationHandler)
+//                        .invalidateHttpSession(true)
+//                        .addLogoutHandler(authenticationHandler)
+//                        .deleteCookies("JSESSIONID")
+//                )
+         //       .addLogoutHandler(authenticationHandler)
+                ;
+
+
+
+
+               /* .authorizeRequests().antMatchers("/").permitAll()
                 .and()
                 .authorizeRequests().antMatchers("/api/**").authenticated()
                 .antMatchers("/api/auto/*").hasAnyRole("ROLE_" + ADMIN)
@@ -49,7 +90,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .and()
                 .logout()
-                .addLogoutHandler(authenticationHandler);
+                .addLogoutHandler(authenticationHandler);*/
     }
 
     @Bean
