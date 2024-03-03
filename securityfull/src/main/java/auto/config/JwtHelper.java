@@ -65,7 +65,7 @@ public class JwtHelper {
     }
 
     @SneakyThrows
-    public String generateToken(String issuer, @Nullable String xSource, Authentication userInfo) {
+   public String generateToken(String issuer, @Nullable String xSource, Authentication userInfo) {
         final Pair<Date, Date> issueAndExpirationTimes = getIssueAndExpirationTimes();
         // Prepare JWT with claims set
         JWTClaimsSet claimsSet = new JWTClaimsSet.Builder()
