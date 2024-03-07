@@ -1,3 +1,4 @@
+
 spring:
   servlet:
     multipart:
@@ -15,10 +16,12 @@ spring:
 
   datasource:
 
-     # url: jdbc:mysql://host.docker.internal:3306/dealer?serverTimezone=Europe/Minsk&useSSL=false
-    url: jdbc:mysql://localhost:3306/dealer?serverTimezone=Europe/Minsk&useSSL=false
-    username: root
-    password: Root
+
+   # url: jdbc:mysql://localhost:3306/dealer?serverTimezone=Europe/Minsk&useSSL=false
+  #  url: jdbc:mysql://host.docker.internal:3306/dealer?serverTimezone=Europe/Minsk&useSSL=false
+    # url: jdbc:mysql://db:3306/dealer?serverTimezone=Europe/Minsk&useSSL=false
+  #  username: root
+   # password: Root
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       leak-detection-threshold: 5000 # in msecs
@@ -36,3 +39,5 @@ springdoc:
 jwt:
   secret: '\\_//\\_//\\_//P@s$w0rD2024\\_//\\_//\\_//'
   expiration: '10m'
+server:
+  port: 8081
