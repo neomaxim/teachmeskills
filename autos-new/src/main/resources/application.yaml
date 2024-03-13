@@ -1,0 +1,25 @@
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 50MB
+      max-file-size: 20MB
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/dealernew?serverTimezone=Europe/Minsk&useSSL=false
+    username: root
+    password: Root
+
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      leak-detection-threshold: 5000 # in msecs
+
+
