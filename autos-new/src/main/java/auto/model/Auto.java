@@ -1,12 +1,10 @@
 package auto.model;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.Accessors;
-
 import javax.persistence.*;
-import java.util.List;
+
 
 @Entity
 @Data
@@ -14,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "autos")
-//@NamedEntityGraph(name="Auto.roles",attributeNodes = @NamedAttributeNode("roles"))
 public class Auto {
     @Id
     @Column(name = "id")
@@ -23,10 +20,12 @@ public class Auto {
 
 
     @Column(name = "vin")
+    // @Size(max = 12, min = 12)
     private String vin;
 
 
     @Column(name = "year")
+
     private int year;
 
     @Column(name = "brand")
@@ -39,13 +38,12 @@ public class Auto {
     @Column(name = "user")
     private String user;
 
-    @Column(name = "price")
-    private int price;
+    // @Column(name = "price")
+    //  private int price;
 
-@Column(name="avatar")
+    @Column(name = "avatar")
     @JsonIgnore
     private byte[] avatar;
-
 
 
 }
