@@ -38,7 +38,6 @@ public class JwtFilter extends OncePerRequestFilter {
         String header = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (StringUtils.isEmpty(header) || !header.startsWith(BEARER_)) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
-            //  response.setStatus(HttpStatus.FORBIDDEN.value());
             return;
         }
         String jwt = header.substring(BEARER_.length()).trim();

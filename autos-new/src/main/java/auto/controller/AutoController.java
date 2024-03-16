@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
+@Log4j
 @RestController
 @RequestMapping("/api/auto")
 @RequiredArgsConstructor
@@ -25,7 +26,7 @@ public class AutoController {
 
     @GetMapping()
     public ResponseEntity<List<AutoDto>> getAll() {
-        return ResponseEntity.ok(autoService.allCars());
+        return ResponseEntity.ok(autoService.getAll());
     }
 
     @GetMapping("/http")
@@ -48,7 +49,7 @@ public class AutoController {
             @RequestParam(required = false) String vin
     ) {
 
-        return StringUtils.isEmpty(vin) ? autoService.allCars() : autoService.findByVin(vin); // производим поиск vin по базе
+        return StringUtils.isEmpty(vin) ? autoService.getAll() : autoService.findByVin(vin);
     }
 
     @GetMapping(path = "/{id}/avatar", produces = MediaType.IMAGE_JPEG_VALUE)
@@ -60,8 +61,8 @@ public class AutoController {
 
     @PostMapping
     public ResponseEntity<AutoDto> create(@RequestPart("autos") @Valid AutoDto autoDto) {
-
         autoService.save(autoDto);
+        log.info("Создание автомобиля с данными = " + autoDto);
         return new ResponseEntity<>(autoDto, HttpStatus.CREATED);
 
     }
@@ -70,7 +71,9 @@ public class AutoController {
     public ResponseEntity<Void> delete(
             @PathVariable @Parameter(description = "auto id", required = true) Long id) {
         autoService.delete(id);
+        log.info("удален автомобиль с id = "+id);
         return ResponseEntity.ok().build();
+
     }
 
 }

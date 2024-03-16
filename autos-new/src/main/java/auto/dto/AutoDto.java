@@ -12,8 +12,6 @@ import javax.validation.constraints.*;
 
 
 public class AutoDto {
-
-
     private Long id;
     @NotNull
     @NotEmpty
@@ -26,7 +24,5 @@ public class AutoDto {
     @NotEmpty
     @NotBlank
     private String user;
-    //private int price;
-
     private byte[] avatar;
 }
