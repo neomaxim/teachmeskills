@@ -76,7 +76,6 @@
         </dependency>
 
 
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -128,25 +127,15 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-         <dependency>
-                  <groupId>org.liquibase</groupId>
-                  <artifactId>liquibase-core</artifactId>
-
-
-              </dependency>
-
-      <!-- <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>test</scope>
-        </dependency>  -->
-
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>${log4j.version}</version>
         </dependency>
-
     </dependencies>
 
     <build>

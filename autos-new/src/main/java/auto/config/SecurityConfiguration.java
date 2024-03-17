@@ -2,7 +2,6 @@ package auto.config;
 
 
 import auto.config.security.JwtFilter;
-import auto.service.AuthenticationHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +20,9 @@ import org.springframework.security.web.authentication.AnonymousAuthenticationFi
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 
 import static auto.controller.AuthController.AUTH_REQUEST_MAPPING;
+
 import static auto.service.Authorities.ADMIN;
+import static auto.service.Authorities.USER;
 
 
 @EnableWebSecurity
@@ -51,7 +52,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", AUTH_REQUEST_MAPPING).permitAll()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/**").hasAuthority(ADMIN)
+                .antMatchers("/api/auto/admin/**").hasAuthority(ADMIN)
+                .antMatchers("/api/auto/*").hasAuthority(USER)
                 .antMatchers("/api/*").authenticated()
 
 
