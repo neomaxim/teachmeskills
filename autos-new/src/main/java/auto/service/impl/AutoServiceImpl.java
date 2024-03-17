@@ -9,10 +9,10 @@ import auto.service.AutoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 
-
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -23,11 +23,13 @@ public class AutoServiceImpl implements AutoService {
     private final AutoMapper autoMapper;
 
     @Override
-    public List<AutoDto> allCars() {
+    @Transactional(readOnly = true)
+    public List<AutoDto> getAll() {
         return autoRepository.findAll().stream().map(autoMapper::toAutoDto).toList();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<AutoDto> getAll(Pageable pageable) {
 
         Page<Auto> all = autoRepository.findAll(pageable);
@@ -35,12 +37,14 @@ public class AutoServiceImpl implements AutoService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<AutoDto> findByVin(String vin) {
-        return autoMapper.toDtoList(autoRepository.findByVin(vin)); // поиск нужного нам vin
+        return autoMapper.toDtoList(autoRepository.findByVin(vin));
 
     }
 
     @Override
+    @Transactional(readOnly = true)
     public AutoDto getById(Long id) {
         return autoRepository.findById(id)
                 .map(autoMapper::toAutoDto)

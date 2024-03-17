@@ -32,7 +32,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
 
-    private final AuthenticationHandler authenticationHandler;
 
     private final JwtFilter jwtFilter;
 
@@ -53,43 +52,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/api/**").hasAuthority(ADMIN)
-                // .antMatchers("/api/auto/*").hasAnyRole("ROLE_" + ADMIN)
                 .antMatchers("/api/*").authenticated()
 
 
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                // .formLogin()
-                //  .loginPage("/users/login")
-                //  .httpBasic()
                 .and()
                 .addFilterAfter(jwtFilter, AnonymousAuthenticationFilter.class)
-                //          .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-                .logout()
-//                .logout(logout -> logout
-//                        .logoutUrl("/my/logout")
-//                        .logoutSuccessUrl("/my/index")
-////                        .logoutSuccessHandler(authenticationHandler)
-//                        .invalidateHttpSession(true)
-//                        .addLogoutHandler(authenticationHandler)
-//                        .deleteCookies("JSESSIONID")
-//                )
-        //       .addLogoutHandler(authenticationHandler)
-        ;
 
+                .logout();
 
-
-
-               /* .authorizeRequests().antMatchers("/").permitAll()
-                .and()
-                .authorizeRequests().antMatchers("/api/**").authenticated()
-                .antMatchers("/api/auto/*").hasAnyRole("ROLE_" + ADMIN)
-                .antMatchers("/api/users/*").hasAnyRole("ROLE_" + ADMIN, "ROLE_" + USER)
-                .and()
-                .formLogin()
-                .and()
-                .logout()
-                .addLogoutHandler(authenticationHandler);*/
     }
 
     @Bean

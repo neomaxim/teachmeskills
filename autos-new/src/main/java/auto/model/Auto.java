@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.Accessors;
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -20,7 +21,6 @@ public class Auto {
 
 
     @Column(name = "vin")
-    // @Size(max = 12, min = 12)
     private String vin;
 
 
@@ -38,8 +38,6 @@ public class Auto {
     @Column(name = "user")
     private String user;
 
-    // @Column(name = "price")
-    //  private int price;
 
     @Column(name = "avatar")
     @JsonIgnore

@@ -1,4 +1,3 @@
-
 spring:
   servlet:
     multipart:
@@ -13,15 +12,19 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
   datasource:
-    url: jdbc:mysql://localhost:3306/dealer?serverTimezone=Europe/Minsk&useSSL=false
+    url: jdbc:mysql://localhost:3306/dealernew?serverTimezone=Europe/Minsk&useSSL=false
     username: root
     password: Root
-
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       leak-detection-threshold: 5000 # in msecs
+
+  liquibase:
+    change-log: 'classpath:db-migrations/changeLog.xml'
+    enabled: true
+
 jwt:
   secret: '\\_//\\_//\\_//P@s$w0rD2024\\_//\\_//\\_//'
   expiration: '10m'
-
