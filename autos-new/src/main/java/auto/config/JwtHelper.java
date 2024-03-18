@@ -83,11 +83,10 @@ public class JwtHelper {
 
         SignedJWT signedJWT = new SignedJWT(JWT_HEADER, claimsSet);
 
-        // Apply the HMAC protection
+
         signedJWT.sign(jwtSigner);
 
-        // Serialize to compact form, produces something like that (jwt sample is below)
-        // eyJhbGciOiJIUzI1NiJ9.SGVsbG8sIHdvcmxkIQ.onO9Ihudz3WkiauDO2Uhyuz0Y18UASXlSc1eS0NkWyA
+
         return signedJWT.serialize();
     }
 

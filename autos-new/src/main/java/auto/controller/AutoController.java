@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+
 @Log4j
 @RestController
 @RequestMapping("/api/auto")
@@ -29,7 +30,7 @@ public class AutoController {
         return ResponseEntity.ok(autoService.getAll());
     }
 
-    @GetMapping("/http")
+    @GetMapping("/page")
     public List<AutoDto> findAll(@RequestParam(defaultValue = "10") Integer limit, @RequestParam(defaultValue = "0") Long offset) {
         if (limit > 10) {
             limit = 10;
@@ -40,7 +41,6 @@ public class AutoController {
         return autoService.getAll(OffsetLimitPageable.of(offset, limit));
 
     }
-
 
     @GetMapping(value = "/search", produces = "application/xml")
     @Operation(operationId = "all", description = "search autos")
@@ -67,11 +67,11 @@ public class AutoController {
 
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/del/{id}")
     public ResponseEntity<Void> delete(
             @PathVariable @Parameter(description = "auto id", required = true) Long id) {
         autoService.delete(id);
-        log.info("удален автомобиль с id = "+id);
+        log.info("удален автомобиль с id = " + id);
         return ResponseEntity.ok().build();
 
     }

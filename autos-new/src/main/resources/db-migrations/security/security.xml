@@ -48,6 +48,40 @@
         </createTable>
     </changeSet>
 
+    <changeSet author="Maksim" id="Create-table-autos">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="autos"/>
+            </not>
+        </preConditions>
+        <createTable tableName="autos">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="avatar" type="tinyblob">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="brand" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="status" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="vin" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="year" type="bigint">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="role_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_autos_role" references="roles(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
     <changeSet author="Maksim" id="Create-admin-role-with-user">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0"><![CDATA[
@@ -88,9 +122,9 @@
         </insert>
 
         <insert tableName="users">
-            <column name="user_name" value="test"/>
-            <column name="login" value="test"/>
-            <column name="password" value="$2a$10$Lx6TxrVeAqPXmXUTAXFiZe5GCg/pt/jLaCoWJ/8xMC7zXe1l2M9BK"/>
+            <column name="user_name" value="guest"/>
+            <column name="login" value="guest"/>
+            <column name="password" value="$2a$10$SObRTfo76FgYHofH3ZLnyOpbBjKSqtDHSPJ/bdmD5c8Xyr8G29KHa"/>
             <column name="status" value="OK"/>
             <column name="role_id" valueComputed="(select id from roles where name = 'GUEST')"/>
         </insert>
